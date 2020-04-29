@@ -1,0 +1,30 @@
+.container-xxl
+{
+  top: 1px;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  color: white;
+  font-family: "Open Sans SemiBold", serif;
+  font-size: 20px;
+}
+
+#ad-title
+{
+  top: 25%;
+  font-size: 40px;
+}
+
+#ad-content
+{
+  top : 38.5%;
+}
+
+#joinus {
+  top : 55%;
+}
+
+.top-left {
+  position: absolute;
+  left: 10%;
+}
