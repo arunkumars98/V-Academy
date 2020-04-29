@@ -1,0 +1,14 @@
+<div id="container">
+  <ngb-tabset #admin_tabs [destroyOnHide]="false">
+    <ngb-tab id="admin-login" title="Login">
+      <ng-template ngbTabContent>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input [(ngModel)]="admin_username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="admin_username">
+          <input [(ngModel)]="admin_password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="admin_password">
+          <button id="login-button" type="button" class="btn btn-primary" (click)="doAdminLogin(admin_username,admin_password)">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

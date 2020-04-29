@@ -1,0 +1,203 @@
+<div *ngIf="data_ready==true" id="cont">
+  <ngb-tabset [destroyOnHide]="false">
+    <ngb-tab id="users" title="Users">
+      <ng-template ngbTabContent>
+        <br>
+        <h5>User Database</h5>
+        <br>
+        <table class="table table-striped userTable">
+          <thead>
+            <tr>
+              <th scope="row">Id</th>
+              <th scope="row">Name</th>
+              <th scope="row">Username</th>
+              <th scope="row">Password</th>
+              <th scope="row">E-mail</th>
+              <th scope="row">Mobile</th>
+              <th scope="row">Parent Mobile</th>
+              <th scope="row">Enrolled Courses</th>
+              <th scope="row">Completed Courses</th>
+              <th scope="row">Active Courses</th>
+              <th scope="row">Payment Details</th>
+              <th scope="row">Interest</th>
+              <th scope="row">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of userList;">
+            <td>{{user.userid}}</td>
+            <td>{{user.fullname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.parent_mobile}}</td>
+            <td>{{user.enrolled_courses}}</td>
+            <td>{{user.courses_completed}}</td>
+            <td>{{user.active_courses}}</td>
+            <td>
+              <div class="nav-item" ngbDropdown display="dynamic" placement="bottom-left">
+                <a class="nav-link navbar-brand" style="cursor: pointer; color: black; font-size: 12px" ngbDropdownToggle id="navbarDropdown" role="button">Payment Details</a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu">
+                  <p ngbDropdownItem>{{user.payment_details}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{user.interest}}</td>
+            <td><a (click)="deleteUser(user.username)">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="instructors" title="Instructors">
+      <ng-template ngbTabContent>
+        <br>
+        <h5>Instructor Database</h5>
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="row">Id</th>
+              <th scope="row">Name</th>
+              <th scope="row">Username</th>
+              <th scope="row">Password</th>
+              <th scope="row">E-mail</th>
+              <th scope="row">Mobile</th>
+              <th scope="row">Courses</th>
+              <th scope="row">Qualification</th>
+              <th scope="row">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let instructor of instructorList;">
+              <td>{{instructor.instructorid}}</td>
+              <td>{{instructor.fullname}}</td>
+              <td>{{instructor.username}}</td>
+              <td>{{instructor.password}}</td>
+              <td>{{instructor.email}}</td>
+              <td>{{instructor.mobile}}</td>
+              <td>{{instructor.courses}}</td>
+              <td>{{instructor.qualification}}</td>
+              <td><a (click)="deleteInstructor(instructor.username)">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab id="admins" title="Admins">
+      <ng-template ngbTabContent>
+        <br>
+        <h5>Admin Database</h5>
+        <br>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="row">Id</th>
+              <th scope="row">Name</th>
+              <th scope="row">Username</th>
+              <th scope="row">Password</th>
+              <th scope="row">Designation</th>
+              <th scope="row">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let admin of adminList;">
+            <td>{{admin.adminid}}</td>
+            <td>{{admin.fullname}}</td>
+            <td>{{admin.username}}</td>
+            <td>{{admin.password}}</td>
+            <td>{{admin.designation}}</td>
+            <td><a (click)="deleteAdmin(admin.username)">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="courses" title="Courses">
+      <ng-template ngbTabContent>
+        <br>
+        <h5>Course Database</h5>
+        <br>
+        <table class="table table-striped userTable">
+          <thead>
+          <tr>
+            <th scope="row">Id</th>
+            <th scope="row">Course Code</th>
+            <th scope="row">Course Name</th>
+            <th scope="row">Description</th>
+            <th scope="row">Author</th>
+            <th scope="row">Tags</th>
+            <th scope="row">Price</th>
+            <th scope="row">Rating</th>
+            <th scope="row">No. of Chapter</th>
+            <th scope="row">No. of Videos</th>
+            <th scope="row">No. of Tests</th>
+            <th scope="row">No. of Enrolls</th>
+            <th scope="row">Posted Date</th>
+            <th scope="row">Updated Date</th>
+            <th scope="row">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let course of courseList;">
+            <td class="myCourseCard">{{course.courseid}}</td>
+            <td class="myCourseCard">{{course.coursecode}}</td>
+            <td class="myCourseCard">{{course.coursename}}</td>
+            <td class="myCourseCard">
+              <div class="nav-item" ngbDropdown>
+                <a class="nav-link navbar-brand" style="cursor: pointer; color: black; font-size: 12px" ngbDropdownToggle id="navbarDropdown3" role="button">Description</a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu">
+                  <p ngbDropdownItem>{{course.descrp}}</p>
+                </div>
+              </div>
+            </td>
+            <td class="myCourseCard">{{course.author}}</td>
+            <td class="myCourseCard">{{course.tags}}</td>
+            <td class="myCourseCard">₹ {{course.price}}</td>
+            <td class="myCourseCard">{{course.rating}}</td>
+            <td class="myCourseCard">{{course.chapters}}</td>
+            <td class="myCourseCard">{{course.videos}}</td>
+            <td class="myCourseCard">{{course.test}}</td>
+            <td class="myCourseCard">{{course.enrolls}}</td>
+            <td class="myCourseCard">{{course.posted_on}}</td>
+            <td class="myCourseCard">{{course.updated_on}}</td>
+            <td><a (click)="deleteCourse(course.courseid)">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="session" title="Session Log">
+      <ng-template ngbTabContent>
+        <br>
+        <h5>Session Logs</h5>
+        <br>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="row">#</th>
+            <th scope="row">Type</th>
+            <th scope="row">Username</th>
+            <th scope="row">Date</th>
+            <th scope="row">In-Time</th>
+            <th scope="row">Out-Time</th>
+            <th scope="row">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let session of sessionList;">
+            <td>{{session.sessionid}}</td>
+            <td>{{session.type}}</td>
+            <td>{{session.username}}</td>
+            <td>{{session.log_date}}</td>
+            <td>{{session.intime}}</td>
+            <td>{{session.outTime}}</td>
+            <td><a (click)="deleteSession(session.sessionid)">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

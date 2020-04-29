@@ -1,0 +1,7 @@
+The Graduate Aptitude Test in Engineering is an examination that primarily test the
+comprehensive understanding of various undergraduate subjects in engineering and science.
+The GATE score of a candidate reflects the relative performance level of a candidate.
+The score is used for admissions to various post-graduate education programs in Indian higher education
+institutes, with financial assistance provided by MHRD and other government agencies. Recently, GATE scores
+are also being used by several Indian public sector undertakings for recruiting graduate engineers in
+entry-level positions. It is one of the most competitive examinations in India.
