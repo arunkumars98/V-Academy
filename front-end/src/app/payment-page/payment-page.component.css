@@ -1,0 +1,17 @@
+.container-xl
+{
+  margin-left: 10%;
+  margin-top: 2%;
+  margin-bottom: 6%;
+  overflow: hidden;
+}
+
+.card{
+  float: left;
+  margin-right: 5%;
+}
+
+input
+{
+  margin-top: 5%;
+}

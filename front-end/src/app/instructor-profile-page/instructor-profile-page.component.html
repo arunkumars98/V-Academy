@@ -1,0 +1,154 @@
+<div *ngIf="data_ready==true" class="container-xl">
+  <div class="card" style="width: 63rem;">
+    <div class="card-body">
+      <div class="d-flex">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+          <li><h5 class="card-title">{{instructor.fullname}}</h5></li>
+          <li ngbNavItem="Profile">
+            <a ngbNavLink>Profile</a>
+            <ng-template ngbNavContent>
+              <h5 class="float-left">Profile Details</h5>
+              <button id="edit-button" (click)="changetoEditMode()" class="btn btn-primary float-right">Edit</button>
+              <br><br>
+              <table *ngIf="profile_edit==false" class="table table-borderless">
+                <tbody>
+                <tr>
+                  <td>Full Name :</td>
+                  <td>{{instructor.fullname}}</td>
+                </tr>
+                <tr>
+                  <td>Username :</td>
+                  <td>{{instructor.username}}</td>
+                </tr>
+                <tr>
+                  <td>E-mail</td>
+                  <td>{{instructor.email}}</td>
+                </tr>
+                <tr>
+                  <td>Mobile</td>
+                  <td>{{instructor.mobile}}</td>
+                </tr>
+                <tr>
+                  <td>Qualification :</td>
+                  <td>{{instructor.qualification}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <div *ngIf="profile_edit==true">
+                <form class="form-inline my-2 my-lg-0">
+                  <input [(ngModel)]="edit_fullname" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Full Name" aria-label="Fullname" name="edit_fullname">
+                  <input [(ngModel)]="edit_username" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Username" aria-label="Username" name="edit_username">
+                  <input [(ngModel)]="edit_email" class="form-control mr-sm-2 w-75 mb-4" type="email" placeholder="Email id" aria-label="Email id" name="edit_email">
+                  <input [(ngModel)]="edit_mobile" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Mobile Number" aria-label="Mobile Number" name="edit_mobile">
+                  <input [(ngModel)]="edit_qualification" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Qualification" aria-label="Qualification" name="edit_qualification">
+                </form>
+                <button (click)="changeInstructorDetails(edit_fullname,edit_username,edit_email,edit_mobile,edit_qualification)" id="edit-isubmit-button" type="button" class="btn btn-primary">Submit</button>
+                <button (click)="changetoViewMode()" id="icancel-button" type="button" class="btn btn-primary float-right mr-4">Cancel</button>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Account">
+            <a ngbNavLink>Account</a>
+            <ng-template ngbNavContent>
+              <h5>Account Details</h5>
+              <br>
+              <h6>Change Password</h6><br>
+              <input [(ngModel)]="edit_password" class="form-control mr-sm-2 w-50 mb-3" type="password" placeholder="Password" aria-label="Password" name="edit_password">
+              <input [(ngModel)]="edit_repassword" #repwd="ngModel" class="form-control mr-sm-2 w-50 mb-3" type="password" placeholder="Confirm Password" aria-label="Re-Password" name="edit_repassword">
+              <div *ngIf="repwd.touched && edit_password!=edit_repassword" class="alert alert-danger">Password Mismatch</div>
+              <button (click)="changePassword(edit_password)" id="ichange-pwd-btn" class="btn btn-primary">Change</button>
+              <br>
+              <br>
+              <h6>Delete Account</h6>
+              <br>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Confirm Deletion</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure ? Do you want to delete your account from our website ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss()">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteInstructor(); modal.close()">Delete</button>
+                </div>
+              </ng-template>
+              <button class="btn btn-danger" (click)="open(content)">Delete Account</button>
+              <br><br>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Edit Courses">
+            <a ngbNavLink>Edit Courses</a>
+            <ng-template ngbNavContent>
+              <h5>Edit / Update Courses</h5>
+              <br>
+              <div *ngIf="course_edit==false">
+                <div *ngFor="let course of courses;" class="card float-left ml-5 mb-5 courseCard">
+                  <img src="../../../assets/{{course.image}}" class="img-fluid" alt="{{course.coursecode}} Image">
+                  <div class="card-body">
+                    <h5 class="card-title">{{course.coursename}}</h5>
+                    <br>
+                    <p class="card-text">Students Enrolled : &nbsp; {{course.enrolls}}</p>
+                    <p class="card-text">Rating : &nbsp; {{course.rating}} / 5</p>
+                    <p class="card-text"> Posted Date : {{course.posted_on}}</p>
+                    <p class="card-text">Updated Date : {{course.updated_on}}</p>
+                    <br>
+                    <button (click)="editSelectedCourse(course.coursecode)" class="btn btn-outline-dark float-right">Update Course</button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="course_edit==true">
+                <form class="form-inline my-2 my-lg-0">
+                  <input [(ngModel)]="edit_course_name" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Name" aria-label="Course Name" name="update_course_name">
+                  <input [(ngModel)]="edit_course_descrp" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Description" aria-label="Description" name="update_course_description">
+                  <input [(ngModel)]="edit_course_author" class="form-control mr-sm-2 w-75 mb-4" type="email" placeholder="Author Name" aria-label="Author Name" name="update_course_author">
+                  <input [(ngModel)]="edit_course_tag" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Tags" aria-label="Course Tags" name="update_course_tags">
+                  <input [(ngModel)]="edit_course_chapter" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Chapters" aria-label="Number of Chapters" name="update_chapter_num">
+                  <input [(ngModel)]="edit_course_test" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Practice test" aria-label="Number of Practice test" name="update_course_tests">
+                  <input [(ngModel)]="edit_course_video" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Videos" aria-label="Number of Videos" name="update_course_videos">
+                  <input [(ngModel)]="edit_course_image" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Image" aria-label="Course Image" name="update_course_image">
+                  <input [(ngModel)]="edit_course_price" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Price" aria-label="Course Price" name="update_course_price">
+                </form>
+                <button (click)="changeCourseDetails(edit_course_name,edit_course_descrp,edit_course_author,edit_course_tag,edit_course_chapter,edit_course_test,edit_course_video,edit_course_image,edit_course_price)" id="update-course-button" type="button" class="btn btn-primary">Submit</button>
+                <button (click)="changetoCourseViewMode()" id="course-cancel-button" type="button" class="btn btn-primary float-right mr-4">Cancel</button>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Add Course">
+            <a ngbNavLink>Add Course</a>
+            <ng-template ngbNavContent>
+              <h5>Add new Course</h5>
+              <br>
+              <form class="form-inline my-2 my-lg-0 myForm">
+                <input [(ngModel)]="new_course_name" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Name" aria-label="Course Name" name="add_course_name">
+                <input [(ngModel)]="new_course_descrp" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Description" aria-label="Description" name="add_course_description">
+                <input [(ngModel)]="new_course_author" class="form-control mr-sm-2 w-75 mb-4" type="email" placeholder="Author Name" aria-label="Author Name" name="add_course_author">
+                <input [(ngModel)]="new_course_tag" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Tags" aria-label="Course Tags" name="add_course_tags">
+                <input [(ngModel)]="new_course_chapter" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Chapters" aria-label="Number of Chapters" name="add_chapter_num">
+                <input [(ngModel)]="new_course_test" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Practice test" aria-label="Number of Practice test" name="add_course_tests">
+                <input [(ngModel)]="new_course_video" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Number of Videos" aria-label="Number of Videos" name="add_course_videos">
+                <input [(ngModel)]="new_course_image" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Image" aria-label="Course Image" name="add_course_image">
+                <input [(ngModel)]="new_course_price" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Course Price" aria-label="Course Price" name="add_course_price">
+                <input [(ngModel)]="new_course_rating" class="form-control mr-sm-2 w-75 mb-4" type="number" placeholder="Course Rating" aria-label="Course Rating" name="add_course_rating">
+              </form>
+              <button (click)="addNewCourse(new_course_name,new_course_descrp,new_course_author,new_course_tag,new_course_chapter,new_course_test,new_course_video,new_course_image,new_course_price,new_course_rating)" id="add-course-button" type="button" class="btn btn-primary">Submit</button>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Stream Video">
+            <a ngbNavLink>Stream Video</a>
+            <ng-template ngbNavContent>
+              <h5>Stream Live Video</h5>
+              <br>
+              <form class="form-inline my-2 my-lg-0">
+                <input [(ngModel)]="video_link" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Video Stream URL" aria-label="Video Stream URL" name="live_video_link">
+                <textarea [(ngModel)]="video_description" rows="5" class="form-control mr-sm-2 w-75 mb-4" placeholder="Video Description" aria-label="Video Descrp" name="live_video_descrp"></textarea>
+              </form>
+              <button (click)="setVideoStream(video_link,video_description)" id="stream-video-button" type="button" class="btn btn-primary">Submit</button>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="ml-4 w-100"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.form-inline
+{
+  margin-left: 10%;
+}
+
+input
+{
+  margin-top: 7%;
+}
+
+button
+{
+  margin-top: 7%;
+  margin-bottom: 50%;
+}
+.form-control
+{
+  width: 85%;
+}
+
+#container
+{
+  margin-top: 5%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.alert
+{
+  width: 85%;
+}

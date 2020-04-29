@@ -1,0 +1,71 @@
+.container-xl
+{
+  margin-top: 4%;
+  margin-bottom: 6%;
+  margin-left: 5%;
+}
+
+.nav-pills
+{
+  border-right: 1px;
+  border-right: solid;
+  border-right-color: #9a9a9a;
+  padding-right: 3%;
+}
+
+.nav-pills *
+{
+  width: 11rem;
+}
+
+.table
+{
+  width: 30rem;
+}
+
+#edit-isubmit-button
+{
+  float: right;
+  margin-right: 25%;
+}
+
+#update-course-button
+{
+  float: right;
+  margin-right: 25%;
+}
+
+#add-course-button
+{
+  float: right;
+  margin-right: 21%;
+}
+
+#stream-video-button
+{
+  float: right;
+  margin-right: 25%;
+}
+
+#ichange-pwd-btn
+{
+  margin-left: 40%;
+}
+
+img {
+  height: 180px;
+}
+
+.courseCard
+{
+  width: 18rem;
+  cursor: pointer;
+  margin-left: 1%;
+  margin-bottom: 5%;
+  margin-right: 1%;
+  float: left;
+}
+
+.myForm {
+  margin-left: 16%;
+}

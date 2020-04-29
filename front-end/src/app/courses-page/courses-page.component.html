@@ -1,0 +1,24 @@
+<div class="container-xl">
+  <div class="alert-light">Showing Results for : {{search}}<button (click)="showAll()" class="btn btn-primary">Show all</button></div>
+  <div *ngIf="coursesList.length<1" class="alert-light"><br><br>No Results found for : {{search}}</div>
+  <br>
+  <div *ngFor="let courses of coursesList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="gotoCourse(courses.courseid)" class="card" style="width: 18rem;">
+    <img src='../../../assets/{{courses.image}}' class="card-img-top img-fluid" alt="{{courses.image}}">
+    <div class="card-body">
+      <h5 class="card-title">{{courses.coursename}}</h5>
+      <p class="card-text">{{courses.chapters}} Chapters | {{courses.videos}} Videos | {{courses.test}} Tests</p>
+      <p class="card-text">{{courses.author}}</p>
+      <p class="card-text" style="text-align: justify">{{courses.descrp}}</p>
+      <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+        </span>
+      </ng-template>
+      <ngb-rating [(rate)]=+courses.rating [starTemplate]="t"></ngb-rating>
+      <h5 class="card-text float-sm-right myPrice">₹ {{courses.price}}</h5>
+    </div>
+  </div>
+</div>
+<div id="pageContainer">
+  <ngb-pagination [collectionSize]="coursesList.length" [(page)]="page" [maxSize]="4" [boundaryLinks]="true" (click)="scroll()" aria-label="pagination"></ngb-pagination>
+</div>

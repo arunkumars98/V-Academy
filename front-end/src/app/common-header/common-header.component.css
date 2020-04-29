@@ -1,0 +1,17 @@
+#search-bar
+{
+  margin-left: 50px;
+  width: 380px;
+}
+
+#search-button
+{
+  margin-left: -15px;
+  border-left-color: white;
+}
+
+#explore-button
+{
+  background-color: white;
+  color: black;
+}

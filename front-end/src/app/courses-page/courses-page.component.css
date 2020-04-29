@@ -1,0 +1,61 @@
+.container-xl
+{
+  margin-top: 2%;
+  margin-bottom: 6%;
+  margin-left: 4%;
+}
+
+img
+{
+  height: 180px;
+}
+
+#pageContainer
+{
+  margin-top: 2%;
+  margin-bottom: 6%;
+  display: flex;
+  justify-content: center;
+}
+
+button
+{
+  float: right;
+  margin-right: 10%;
+}
+
+.alert-light
+{
+  margin-bottom: 3%;
+}
+
+.card
+{
+  display: inline-block;
+  margin-right: 7%;
+  margin-bottom: 5%;
+  cursor: pointer;
+}
+
+.myPrice
+{
+  margin-top: 5px;
+  margin-right: 9px;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #d3d3d3;
+}
+.full {
+  color: gold;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: gold;
+}

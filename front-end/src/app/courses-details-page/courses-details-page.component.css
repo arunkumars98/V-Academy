@@ -1,0 +1,36 @@
+.container-xl
+{
+  margin-bottom: 6%;
+  margin-right: 2%;
+  margin-left: 5%;
+  overflow: hidden;
+}
+
+.card
+{
+  float: left;
+  margin-top: 3%;
+  align-content: center;
+}
+
+.detailsCard
+{
+  margin-right: 4%;
+}
+
+#d-title
+{
+  margin-top: 3%;
+  text-align : center;
+}
+
+ul
+{
+  margin-left: 5%;
+}
+
+button
+{
+  margin-top: 6%;
+  margin-left: 10%;
+}

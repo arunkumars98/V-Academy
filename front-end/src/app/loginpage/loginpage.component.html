@@ -1,0 +1,34 @@
+<div id="container">
+  <ngb-tabset #tabs [destroyOnHide]="false">
+    <ngb-tab id="login" title="Login">
+      <ng-template ngbTabContent>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input [(ngModel)]="login_username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="login_username">
+          <input [(ngModel)]="login_password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="login_password">
+          <button id="login-button" type="button" class="btn btn-primary" (click)="sendLoginDetails(login_username,login_password)">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="sign-up">
+      <ng-template ngbTabTitle>Sign up</ng-template>
+      <ng-template ngbTabContent>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input [(ngModel)]="signup_fullname" class="form-control mr-sm-2" type="text" placeholder="Full Name" aria-label="Fullname" name="signup_fullname">
+          <input [(ngModel)]="signup_username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="signup_username">
+          <input required email [(ngModel)]="signup_email" #email="ngModel" class="form-control mr-sm-2" type="email" placeholder="Email id" aria-label="Email id" name="signup_email">
+          <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is not valid</div>
+          <input [(ngModel)]="signup_mobile" class="form-control mr-sm-2" type="text" placeholder="Mobile Number" aria-label="Mobile Number" name="signup_mobile">
+          <input [(ngModel)]="signup_password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="signup_password">
+          <input [(ngModel)]="signup_repassword" #repwd="ngModel" class="form-control mr-sm-2" type="password" placeholder="Confirm Password" aria-label="Re-Password" name="signup_repassword">
+          <div class="alert alert-danger" *ngIf="repwd.touched && signup_password!=signup_repassword">Password Mismatch</div>
+          <button type="button" class="btn btn-primary" (click)="sendSignupDetails(signup_fullname,signup_username,signup_email,signup_password,signup_mobile)">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="instructor">
+      <ng-template ngbTabTitle><a [routerLink]="['/instructor/login']">Instructor</a></ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

@@ -1,0 +1,24 @@
+.container-xl
+{
+  margin-top: 2%;
+  margin-bottom: 6%;
+  margin-left: 1%;
+  overflow: hidden;
+}
+
+.card
+{
+  float: left;
+}
+
+.learn-container
+{
+  margin-left: 2%;
+  margin-right: 1%;
+  float: left;
+}
+
+video
+{
+  margin-left: 21%;
+}

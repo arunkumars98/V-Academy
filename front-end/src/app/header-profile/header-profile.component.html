@@ -1,0 +1,10 @@
+<div class="nav-item" ngbDropdown #myDrop="ngbDropdown" display="dynamic" placement="bottom-right">
+  <a *ngIf="profileRestService.isLoggedIn==true" class="nav-link navbar-brand" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
+    {{ profileRestService.current_name }}
+  </a>
+  <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu">
+    <a ngbDropdownItem (click)="gotoProfile(); myDrop.close();">My Profile</a>
+    <a ngbDropdownItem (click)="goToAccount(); myDrop.close();">My Account</a>
+    <a ngbDropdownItem (click)="dologoutCurrentUser(); myDrop.close();">Log Out</a>
+  </div>
+</div>

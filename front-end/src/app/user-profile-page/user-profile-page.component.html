@@ -1,0 +1,199 @@
+<div *ngIf="data_ready==true" class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+          <li><h5 class="card-title">{{ user.fullname }}</h5></li>
+          <li ngbNavItem="Profile">
+            <a ngbNavLink>Profile</a>
+            <ng-template ngbNavContent>
+              <h5 class="float-left">Profile Details</h5>
+              <button id="edit-button" (click)="changetoEditMode()" class="btn btn-primary float-right">Edit</button>
+              <br><br>
+              <table *ngIf="profile_edit==false" class="table table-borderless">
+                <tbody>
+                <tr>
+                  <td>Full Name :</td>
+                  <td>{{user.fullname}}</td>
+                </tr>
+                <tr>
+                  <td>Username :</td>
+                  <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                  <td>E-mail</td>
+                  <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                  <td>Mobile</td>
+                  <td>{{user.mobile}}</td>
+                </tr>
+                <tr>
+                  <td>Parent Mobile</td>
+                  <td>{{user.parent_mobile}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <div *ngIf="profile_edit==true">
+                <form class="form-inline my-2 my-lg-0">
+                  <input [(ngModel)]="edit_fullname" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Full Name" aria-label="Fullname" name="edit_fullname">
+                  <input [(ngModel)]="edit_username" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Username" aria-label="Username" name="edit_username">
+                  <input [(ngModel)]="edit_email" class="form-control mr-sm-2 w-75 mb-4" type="email" placeholder="Email id" aria-label="Email id" name="edit_email">
+                  <input [(ngModel)]="edit_mobile" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Mobile Number" aria-label="Mobile Number" name="edit_mobile">
+                  <input [(ngModel)]="edit_parent_mobile" class="form-control mr-sm-2 w-75 mb-4" type="text" placeholder="Parent Mobile Number" aria-label="Parent Mobile" name="edit_par_mobile">
+                </form>
+                <button (click)="submitProfileChanges(edit_fullname,edit_username,edit_email,edit_mobile,edit_parent_mobile)" id="edit-submit-button" type="button" class="btn btn-primary">Submit</button>
+                <button (click)="changetoViewMode()" id="cancel-button" type="button" class="btn btn-primary float-right mr-4">Cancel</button>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Account">
+            <a ngbNavLink>Account</a>
+            <ng-template ngbNavContent>
+              <h5>Account Details</h5>
+              <br>
+              <h6>Change Password</h6><br>
+              <input [(ngModel)]="edit_password" class="form-control mr-sm-2 w-50 mb-3" type="password" placeholder="Password" aria-label="Password" name="edit_password">
+              <input [(ngModel)]="edit_re_password" #repwd="ngModel" class="form-control mr-sm-2 w-50 mb-3" type="password" placeholder="Confirm Password" aria-label="Re-Password" name="edit_repassword">
+              <div *ngIf="repwd.touched && edit_password!=edit_re_password" class="alert alert-danger">Password mismatch</div>
+              <button (click)="changePassword(edit_password)" id="change-pwd-btn" class="btn btn-primary">Change</button>
+              <br>
+              <br>
+              <h6>Delete Account</h6>
+              <br>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Confirm Deletion</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure ? Do you want to delete your account from our website ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss()">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteAccount();modal.close();">Delete</button>
+                </div>
+              </ng-template>
+              <button class="btn btn-danger" (click)="open(content)">Delete Account</button>
+              <br><br>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Personalization">
+            <a ngbNavLink>Personalization</a>
+            <ng-template ngbNavContent>
+              <h5>Personalization</h5>
+              <br>
+              <p class="card-text"> Which type of courses are you interested in ?</p>
+              <div class="myInput">
+                <label><input (click)="choice='iot'" type="radio" name="optradio" [checked]="choice=='iot'">  Internet of Things</label><br>
+                <label><input (click)="choice='gat'" type="radio" name="optradio" [checked]="choice=='gat'">  GATE Preparation Courses</label><br>
+                <label><input (click)="choice='ups'" type="radio" name="optradio" [checked]="choice=='ups'">  UPSC Preparation Courses</label><br>
+                <label><input (click)="choice='rob'" type="radio" name="optradio" [checked]="choice=='rob'">  Robotics</label><br>
+                <label><input (click)="choice='ml'" type="radio" name="optradio" [checked]="choice=='ml'">  Machine Learning</label><br>
+                <label><input (click)="choice='ai'" type="radio" name="optradio" [checked]="choice=='ai'">  Artificial Intelligence</label><br>
+                <br>
+                <button (click)="changeSuggestion(choice)" class="btn btn-primary">Submit</button>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Suggestions">
+            <a ngbNavLink>Suggestions</a>
+            <ng-template ngbNavContent>
+              <h5>Suggested Courses</h5>
+              <br>
+              <div *ngFor="let courses of suggested_courses;" (click)="goToDetails(courses.courseid)" class="card courseCard">
+                <img src='../../../assets/{{courses.image}}' class="card-img-top img-fluid" alt="{{courses.coursename}} Image">
+                <div class="card-body">
+                  <h5 class="card-title">{{courses.coursename}}</h5>
+                  <p class="card-text">{{courses.chapters}} Chapters | {{courses.videos}} Videos | {{courses.test}} Tests</p>
+                  <p class="card-text">{{courses.author}}</p>
+                  <p class="card-text">{{courses.descrp}}</p>
+                  <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+        </span>
+                  </ng-template>
+                  <ngb-rating [(rate)]=+courses.rating [starTemplate]="t"></ngb-rating>
+                  <h5 class="card-text float-sm-right myPrice">₹ {{courses.price}}</h5>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Enrolled Courses">
+            <a ngbNavLink>Enrolled Courses</a>
+            <ng-template ngbNavContent>
+              <h5>Enrolled Courses</h5>
+              <br>
+              <div *ngFor="let courses of enrolled_courses;" (click)="goToCourse(courses.courseid)" class="card courseCard">
+                <img src='../../../assets/{{courses.image}}' class="card-img-top img-fluid" alt="{{courses.coursename}} Image">
+                <div class="card-body">
+                  <h5 class="card-title">{{courses.coursename}}</h5>
+                  <p class="card-text">{{courses.chapters}} Chapters | {{courses.videos}} Videos | {{courses.test}} Tests</p>
+                  <p class="card-text">{{courses.author}}</p>
+                  <p class="card-text">{{courses.descrp}}</p>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Active Courses">
+            <a ngbNavLink>Active Courses</a>
+            <ng-template ngbNavContent>
+              <h5>Enrolled Courses</h5>
+              <br>
+              <div *ngFor="let courses of active_courses;" (click)="goToCourse(courses.courseid)" class="card courseCard">
+                <img src='../../../assets/{{courses.image}}' class="card-img-top img-fluid" alt="{{courses.coursename}} Image">
+                <div class="card-body">
+                  <h5 class="card-title">{{courses.coursename}}</h5>
+                  <p class="card-text">{{courses.chapters}} Chapters | {{courses.videos}} Videos | {{courses.test}} Tests</p>
+                  <p class="card-text">{{courses.author}}</p>
+                  <p class="card-text">{{courses.descrp}}</p>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Completed Courses">
+            <a ngbNavLink>Completed Courses</a>
+            <ng-template ngbNavContent>
+              <h5>Completed Courses</h5>
+              <br>
+              <div *ngFor="let courses of completed_courses;" (click)="goToCourse(courses.courseid)" class="card courseCard">
+                <img src='../../../assets/{{courses.image}}' class="card-img-top img-fluid" alt="{{courses.coursename}} Image">
+                <div class="card-body">
+                  <h5 class="card-title">{{courses.coursename}}</h5>
+                  <p class="card-text">{{courses.chapters}} Chapters | {{courses.videos}} Videos | {{courses.test}} Tests</p>
+                  <p class="card-text">{{courses.author}}</p>
+                  <p class="card-text">{{courses.descrp}}</p>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li ngbNavItem="Payment Details">
+            <a ngbNavLink>Payment Details</a>
+            <ng-template ngbNavContent>
+              <h5>Payment Details</h5>
+              <br>
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="row">#</th>
+                    <th scope="row">Date</th>
+                    <th scope="row">Course</th>
+                    <th scope="row">Amount</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="payment_details.length>0">
+                <tr *ngFor="let payment of payment_details; index as i">
+                  <th scope="row">{{ (i+1) }}</th>
+                  <td>{{payment.date}}</td>
+                  <td>{{payment.course_name}}</td>
+                  <td>₹ {{payment.amount}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="ml-4 w-100"></div>
+      </div>
+    </div>
+  </div>
+</div>

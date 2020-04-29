@@ -1,0 +1,43 @@
+.container
+{
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.card
+{
+  margin: 2%;
+}
+
+.myReply
+{
+  margin-left: 10%;
+}
+
+#forum-bar
+{
+  margin-left: 2%;
+  margin-right: 1%;
+  width: 60%;
+}
+
+#post-bar
+{
+  width: 100%;
+}
+
+#showrname
+{
+  margin-left: 3%;
+}
+
+#showsname
+{
+  margin-left: 3%;
+}
+
+#post-button
+{
+  margin-top: 3%;
+  margin-left: 94%;
+}

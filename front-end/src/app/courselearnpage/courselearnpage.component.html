@@ -1,0 +1,64 @@
+<div *ngIf="data_ready==true" class="container-xl">
+  <div class="card" style="width: 15.5rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ current_course.coursename }}</h5>
+      <br>
+      <h6 class="card-text">Introduction to {{ current_course.coursename }}</h6>
+      <ul class="card-text">
+        <li>Introduction and Overview</li>
+        <li>History of {{current_course.coursename}}</li>
+        <li>Evolution of {{current_course.coursename}}</li>
+      </ul>
+      <h6 class="card-text">Concepts in {{ current_course.coursename }}</h6>
+      <ul class="card-text">
+        <li>Concepts Overview</li>
+        <li>Theories</li>
+        <li>Advanced Concepts</li>
+      </ul>
+      <h6 class="card-text">Implementation of {{ current_course.coursename }}</h6>
+      <ul class="card-text">
+        <li>Case Studies</li>
+        <li>Implementation Details</li>
+        <li>Sample Project</li>
+      </ul>
+      <a class="card-text">Appendix</a>
+      <ul class="card-text">
+        <li>Future Advancements</li>
+        <li>Future Scope</li>
+        <li>References</li>
+      </ul>
+      <br>
+      <h6 class="card-text">Practice Test 1</h6>
+      <h6 class="card-text">Practice Test 2</h6>
+      <h6 class="card-text">Practice Test 3</h6>
+      <br>
+      <button (click)="doEndCourse()" class="btn btn-primary ml-5">End Course</button>
+    </div>
+  </div>
+  <div class="learn-container">
+    <video width="540" height="320" controls controlsList="nodownload" poster="../../assets/thumbnail.png">
+     <source src="../../assets/video.mp4" type="video/mp4">
+    </video>
+    <br>
+    <br>
+    <div class="card" style="width: 52rem;">
+      <div class="card-body">
+        <h3 class="card-title">Introduction to {{ current_course.coursename }}</h3>
+        <h5 class="card-title">Introduction and Overview</h5>
+        <p class="card-text" style="text-align: justify">Beginning with cognitive load theory as their motivating
+          scientific premise, researchers such as Richard E. Mayer, John Sweller, and Roxana Moreno established
+          within the scientific literature a set of multimedia instructional design principles that promote
+          effective learning.Many of these principles have been "field tested" in everyday learning
+          settings and found to be effective there as well. The majority of this body of research has been
+          performed using university students given relatively short lessons on technical concepts with which they
+          held low prior knowledge. However, David Roberts has tested the method with students in nine social
+          science disciplines including sociology, politics and business studies. His longitudinal research
+          programme over 3 years established a clear improvement in levels of student engagement and in the
+          development of active learning principles among students exposed to a combination of images and text,
+          over students exposed only to text. A number of other studies have shown these principles to be
+          effective with learners of other ages and with non-technical learning content.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

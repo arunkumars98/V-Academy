@@ -1,0 +1,72 @@
+<div *ngIf="data_ready==true" class="container-xl">
+  <div class="card detailsCard" style="width: 40rem;">
+    <img src='../../../assets/{{current_course.image}}' class="card-img-top img-fluid" alt="{{current_course.coursename}} Image">
+    <div class="card-body">
+      <h3 class="card-title">{{current_course.coursename}}</h3>
+      <p class="card-text">{{current_course.chapters}} Chapters | {{current_course.videos}} Videos | {{current_course.test}} Tests</p>
+      <h5 class="card-text">Author</h5>
+      <p class="card-text">{{current_course.author}}</p>
+      <h5 class="card-text">Description</h5>
+      <p class="card-text">{{current_course.descrp}}</p>
+      <h5 class="card-text">Course Overview</h5>
+      <ul class="card-text">
+        <li class="card-text">Introduction to {{current_course.coursename}}</li>
+          <ul class="card-text">
+            <li class="card-text">Introduction and Overview</li>
+            <li class="card-text">History of {{current_course.coursename}}</li>
+            <li class="card-text">Evolution of {{current_course.coursename}}</li>
+          </ul>
+        <li class="card-text">Concepts in {{current_course.coursename}}</li>
+          <ul class="card-text">
+            <li class="card-text">Concepts Overview</li>
+            <li class="card-text">Theories</li>
+            <li class="card-text">Advanced Concepts</li>
+          </ul>
+        <li class="card-text">Implementation of {{current_course.coursename}}</li>
+          <ul class="card-text">
+            <li class="card-text">Case Studies</li>
+            <li class="card-text">Implementation Details</li>
+            <li class="card-text">Sample Project</li>
+          </ul>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="width: 20rem">
+    <h5 id="d-title">Dashboard</h5>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of dashboard; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td> {{ d.d_name }} </td>
+        <td> {{ d.d_score }} </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card" style="width: 20rem">
+    <div class="card-body">
+      <h5 class="card-title float-sm-left">Students Enrolled</h5>
+      <p class="card-text float-sm-right">{{current_course.enrolls}}k+</p>
+    </div>
+  </div>
+  <div class="card" style="width: 20rem">
+    <div class="card-body">
+      <h5 class="card-title float-sm-left" style="padding-top: 1.5%">Rating</h5>
+      <ngb-rating [rate]=rating class="float-sm-right" style="font-size: 1.5rem; color: gold; margin-top: -1%;"></ngb-rating>
+    </div>
+  </div>
+  <div class="card" style="width: 20rem">
+    <div class="card-body">
+      <h5 class="card-title float-sm-left" style="padding-top: 1.5%">Price</h5>
+      <h4 class="card-text float-sm-right myPrice">₹ {{current_course.price}} </h4>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="startCourse()">Start Course</button>
+</div>

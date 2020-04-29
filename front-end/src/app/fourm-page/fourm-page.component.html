@@ -1,0 +1,57 @@
+<div *ngIf="data_ready==true" class="container">
+  <form class="form-inline my-2 my-lg-0">
+    <input [(ngModel)]="search_post" id = "forum-bar" class="form-control mr-xl-3" type="search" placeholder="Search" aria-label="forum_input" name="forum_input">
+    <button (click)="doSearchPost(search_post)" id="forum-button" class="form-control mr-sm-2" type="submit"><i class=" fa fa-search"></i></button>
+    <button (click)="setDefautltSearch()" class="btn btn-primary mr-sm-2" type="submit">Show all</button>
+  </form>
+  <br>
+  <div *ngIf="search_post!='';">
+    <p class="alert-light" id="showrname">Showing results for : {{search_post}}</p>
+  </div>
+  <div *ngIf="search_post=='';">
+    <p class="alert-light" id="showsname">Showing results for : all</p>
+  </div>
+  <div class="card">
+    <div class="card" *ngFor="let post of posts; index as i;">
+      <div class="card-body">
+        <h4 class="card-title">Q{{i+1}}: {{post.question.topic}}</h4>
+        <p class="card-text">{{post.question.timestamp}} &nbsp;&nbsp;&nbsp;&nbsp; Posted by : {{post.question.postedby}}</p>
+        <p class="card-text">{{post.question.content}}</p>
+        <ng-template #popContent><label><textarea [(ngModel)]="new_reply_text" class="form-control" rows="5" cols="100" name="reply"></textarea>
+        </label><br><button class="btn btn-primary float-right" (click)="doReply(post.question.qid,new_reply_text);p.close();">Submit</button><br><br></ng-template>
+        <ng-template #popTitle><b>Reply</b><button class="btn float-right" style="margin-top: -4%" (click)="p.close()" ><i class="fa fa-close"></i></button></ng-template>
+        <button class="btn btn-primary float-xl-right" #p="ngbPopover" [ngbPopover]="popContent" [popoverTitle]="popTitle" autoClose="outside">Reply</button>
+        <br><br>
+        <div *ngIf="post.replies!=null" class="card-body border-top">
+          <div class="card myReply" *ngFor="let reply of post.replies;">
+            <div class="card-body">
+              <p class="card-text float-sm-left">Replied by : {{reply.repliedby}}</p>
+              <p class="card-text float-sm-right"> {{reply.timestamp}}</p>
+              <br>
+              <br>
+              <p class="card-text"> {{reply.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"> Post a Question </h5>
+      <h6 class="card-text"> Username : {{username}} </h6>
+      <form class="form-inline">
+        <input [(ngModel)]="new_post_topic" id="post-bar" class="form-control" type="text" placeholder="Topic" aria-label="post_input" name="post_input">
+        <br>
+        <br>
+        <br>
+        <br>
+        <textarea [(ngModel)]="new_post_content" class="form-control" rows="10" cols="150" aria-label="post_body_input" name="post_body_input">
+        </textarea>
+        <button (click)="doPostNewQuestion(new_post_topic,new_post_content)" id="post-button" class="btn btn-primary">Post</button>
+      </form>
+    </div>
+  </div>
+</div>

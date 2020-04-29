@@ -1,0 +1,17 @@
+.container-xl
+{
+  margin-top: 2%;
+  margin-bottom: 6%;
+  overflow: hidden;
+}
+
+#live-video
+{
+  margin-top: -2%;
+  margin-left: 10%;
+}
+
+.myChat
+{
+  margin-top: 103%;
+}

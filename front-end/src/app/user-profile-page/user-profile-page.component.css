@@ -1,0 +1,76 @@
+.container
+{
+  margin-top: 2%;
+  margin-bottom: 6%;
+}
+
+li{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.nav-pills
+{
+  border-right: 1px;
+  border-right: solid;
+  border-right-color: #9a9a9a;
+  padding-right: 3%;
+}
+
+.nav-pills *
+{
+  width: 11rem;
+}
+
+img
+{
+  height: 180px;
+}
+
+.table
+{
+  width: 30rem;
+}
+
+#edit-submit-button
+{
+  float: right;
+  margin-right: 25%;
+}
+
+#change-pwd-btn
+{
+  margin-left: 40%;
+}
+
+.myInput
+{
+  margin-left: 4%;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #d3d3d3;
+}
+.full {
+  color: gold;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: gold;
+}
+
+.courseCard
+{
+  width: 18rem;
+  cursor: pointer;
+  margin-left: 3%;
+  margin-bottom: 5%;
+  margin-right: 3%;
+  float: left;
+}

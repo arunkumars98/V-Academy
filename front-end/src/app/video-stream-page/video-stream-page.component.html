@@ -1,0 +1,32 @@
+<div class="container-xl">
+  <div class="float-left" style="width: 44rem;">
+    <video id="live-video" width="600" height="440" controls controlsList="nodownload">
+      <source src="{{video_link}}" type="video/mp4">
+    </video>
+    <div class="card float-left mt-5" style="width: 36.5rem; margin-left:11%;">
+      <div class="card-body">
+        <h5 class="card-title">Description</h5>
+        <br>
+        <p class="card-text">{{video_description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card float-left" style="width: 25rem; height: 38rem">
+    <div class="card-body">
+      <h5 class="card-title">Discussion</h5>
+      <br>
+      <div class="myChat">
+        <div class="card" style="width: 12rem; height: 4rem; color: gray">
+          <div class="card-body">
+            <p>What is the topic ?</p>
+          </div>
+        </div>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control ml-1 mb-2 float-left w-75" placeholder="Type text here.." aria-label="doubt" name="doubt">
+          <button class="btn btn-primary float-left ml-3 mb-2">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

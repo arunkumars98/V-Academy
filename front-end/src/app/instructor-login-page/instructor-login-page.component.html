@@ -1,0 +1,31 @@
+<div id="container">
+  <ngb-tabset #instructor_tabs [destroyOnHide]="false">
+    <ngb-tab id="instructor_login" title="Login">
+      <ng-template ngbTabContent>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input [(ngModel)]="instructor_username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="login_username">
+          <input [(ngModel)]="instructor_password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="login_password">
+          <button (click)="doLoginInstructor(instructor_username,instructor_password)" id="login-button" type="button" class="btn btn-primary">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="instructor_sign-up">
+      <ng-template ngbTabTitle>Sign up</ng-template>
+      <ng-template ngbTabContent>
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+          <input [(ngModel)]="signup_fullname" class="form-control mr-sm-2" type="text" placeholder="Full Name" aria-label="Fullname" name="signup_fullname">
+          <input [(ngModel)]="signup_username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="signup_username">
+          <input [(ngModel)]="signup_email" class="form-control mr-sm-2" type="email" placeholder="Email id" aria-label="Email id" name="signup_email">
+          <input [(ngModel)]="signup_mobile" class="form-control mr-sm-2" type="number" placeholder="Mobile Number" aria-label="Mobile Number" name="signup_mobile">
+          <input [(ngModel)]="signup_qualification" class="form-control mr-sm-2" type="text" placeholder="Qualification" aria-label="Qualification" name="signup_qualification">
+          <input [(ngModel)]="signup_password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="signup_password">
+          <input [(ngModel)]="signup_repassword" #repwd="ngModel" class="form-control mr-sm-2" type="password" placeholder="Confirm Password" aria-label="Re-Password" name="signup_repassword">
+          <div *ngIf="repwd.touched && signup_password!=signup_repassword" class="alert alert-danger">Password mismatch</div>
+          <button (click)="signupInstructor(signup_fullname,signup_username,signup_email,signup_mobile,signup_qualification,signup_password)" type="button" class="btn btn-primary">Submit</button>
+        </form>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

@@ -1,0 +1,53 @@
+h2
+{
+  margin-left: 40px;
+}
+
+.img-svg
+{
+  width: 80px;
+  height: 60px;
+  margin-bottom: 35px;
+
+}
+
+.container
+{
+  margin-top: 70px;
+  text-align: center;
+  font-family: "Open Sans SemiBold", serif;
+}
+.navbar
+{
+  top : 5px;
+}
+
+.nav-item
+{
+  padding-left: 35px;
+  padding-right: 30px;
+  text-align: center;
+}
+
+.forumImage
+{
+  width: 35%;
+  height: 35%;
+}
+
+.myContainer
+{
+  background-color: #71cace;
+}
+
+.forumText
+{
+  margin-right: 10%;
+  margin-top: 5%;
+  color: white;
+}
+
+.forumText p
+{
+  font-size: 20px;
+}
