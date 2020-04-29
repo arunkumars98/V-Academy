@@ -1,0 +1,1 @@
+This is the back-end of the V-Acdemy project which uses a mysql server as the database server.
